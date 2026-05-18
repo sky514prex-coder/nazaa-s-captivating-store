@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { MessageCircle } from "lucide-react";
-import { SiteLayout, waLink } from "@/components/SiteLayout";
+import { SiteLayout } from "@/components/SiteLayout";
+import { OrderDialog } from "@/components/OrderDialog";
 import b1 from "@/assets/bag-1.jpg";
 import b2 from "@/assets/bag-2.jpg";
 import b3 from "@/assets/bag-3.jpg";
