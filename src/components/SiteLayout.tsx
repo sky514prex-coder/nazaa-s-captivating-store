@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
+import { OrderDialog } from "@/components/OrderDialog";
 
 const WHATSAPP = "2349169661874";
 const waLink = (msg = "Hi Nazaa's Store, I'd like to place an order.") =>
