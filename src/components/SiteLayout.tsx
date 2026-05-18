@@ -1,4 +1,4 @@
-import { Link, Outlet, useLocation } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
 
@@ -106,13 +106,11 @@ export function WhatsAppFloat() {
   );
 }
 
-export function SiteLayout() {
+export function SiteLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-1 pt-20">
-        <Outlet />
-      </main>
+      <main className="flex-1 pt-20">{children}</main>
       <Footer />
       <WhatsAppFloat />
     </div>
