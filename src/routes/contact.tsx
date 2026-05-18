@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { Phone, MapPin, Clock, MessageCircle, Mail, ShoppingBag } from "lucide-react";
+import { Phone, MapPin, Clock, MessageCircle, Mail } from "lucide-react";
 import { SiteLayout, waLink } from "@/components/SiteLayout";
 import { OrderDialog } from "@/components/OrderDialog";
 
