@@ -149,14 +149,17 @@ function HomePage() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -8 }}
-              className="group rounded-2xl overflow-hidden bg-card border border-border"
+              className="group rounded-2xl overflow-hidden bg-card border border-border flex flex-col"
             >
-              <div className="aspect-[4/5] overflow-hidden bg-secondary">
-                <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+              <div className="aspect-square overflow-hidden bg-white">
+                <img src={p.img} alt={p.name} loading="lazy" className="w-full h-full object-contain p-4 transition-transform duration-500 group-hover:scale-105" />
               </div>
-              <div className="p-4">
+              <div className="p-4 flex flex-col gap-2 flex-1">
                 <h3 className="font-medium text-foreground text-sm md:text-base">{p.name}</h3>
-                <p className="text-primary mt-1 font-display">{p.price}</p>
+                <p className="text-primary font-display">{p.price}</p>
+                <div className="mt-auto pt-2">
+                  <OrderDialog product={p.name} price={p.price} triggerClassName="w-full inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-full bg-gradient-ember text-primary-foreground text-xs font-medium hover:shadow-glow transition" />
+                </div>
               </div>
             </motion.div>
           ))}
@@ -181,17 +184,18 @@ function HomePage() {
               </p>
             </div>
             <div className="flex md:justify-end gap-3">
+              <OrderDialog
+                triggerClassName="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-background text-foreground font-medium hover:scale-105 transition-transform"
+                triggerLabel="Place Order"
+              />
               <a
                 href={waLink()}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-background text-foreground font-medium hover:scale-105 transition-transform"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-primary-foreground/40 font-medium hover:bg-background/10 transition"
               >
-                <Play className="w-4 h-4 fill-current" /> WhatsApp Us
+                <ShoppingBag className="w-4 h-4" /> WhatsApp
               </a>
-              <Link to="/contact" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-primary-foreground/40 font-medium hover:bg-background/10 transition">
-                Contact
-              </Link>
             </div>
           </div>
         </motion.div>
