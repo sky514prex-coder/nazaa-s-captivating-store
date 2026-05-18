@@ -1,7 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "motion/react";
-import { Play, ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles, ShoppingBag } from "lucide-react";
 import { SiteLayout, waLink } from "@/components/SiteLayout";
+import { OrderDialog } from "@/components/OrderDialog";
 import heroImg from "@/assets/hero-iphones.jpg";
 import bagsImg from "@/assets/hero-bags.jpg";
 import phone1 from "@/assets/phone-1.jpg";
@@ -30,58 +31,51 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div
-          className="relative mx-2 md:mx-6 mt-2 rounded-2xl overflow-hidden min-h-[80vh] md:min-h-[88vh] flex items-center"
-          style={{ backgroundImage: `url(${heroImg})`, backgroundSize: "cover", backgroundPosition: "center" }}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/40 to-transparent md:from-background/70 md:via-background/20" />
-          <div className="absolute bottom-0 inset-x-0 h-48" style={{ background: "linear-gradient(180deg, transparent 0%, oklch(0.72 0.18 45 / 0.35) 50%, oklch(0.78 0.13 80 / 0.45) 100%)", clipPath: "polygon(0 60%, 100% 30%, 100% 100%, 0% 100%)" }} />
+        <div className="relative mx-2 md:mx-6 mt-2 rounded-3xl overflow-hidden min-h-[78vh] md:min-h-[86vh] flex items-center bg-card">
+          <img src={heroImg} alt="Premium smartphones at Nazaa's Store" className="absolute inset-0 w-full h-full object-cover opacity-90" />
+          <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-background via-background/70 md:via-background/40 to-transparent" />
+          <div className="absolute -bottom-32 -right-32 w-[28rem] h-[28rem] rounded-full bg-primary/20 blur-3xl" />
 
-          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 grid md:grid-cols-2 gap-8 items-center">
-            <div className="hidden md:block" />
+          <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
             <motion.div
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
-              className="text-center md:text-right"
+              className="max-w-2xl"
             >
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/40 backdrop-blur border border-border/50 text-xs text-accent mb-6"
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/50 backdrop-blur border border-border/60 text-xs text-accent mb-6"
               >
                 <Sparkles className="w-3 h-3" /> Trusted in Owerri, Nigeria
               </motion.div>
               <h1 className="font-display font-bold text-5xl md:text-7xl lg:text-8xl text-foreground leading-[0.95]">
-                Nazaa's <span className="block">Store</span>
+                Nazaa's <span className="block text-gradient-ember italic">Store</span>
               </h1>
-              <p className="mt-4 font-display text-2xl md:text-4xl text-gradient-ember italic">
-                Premium iPhones, Devices &amp; Bags
+              <p className="mt-5 text-xl md:text-2xl text-foreground/90 font-light">
+                Authentic iPhones &amp; designer bags — delivered with care from Owerri.
               </p>
-              <p className="mt-3 text-base md:text-lg text-muted-foreground">
-                Authentic. Curated. Delivered with care from Owerri.
+              <p className="mt-2 text-base text-muted-foreground max-w-lg">
+                Place your order in seconds. We'll confirm and dispatch on WhatsApp.
               </p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
-                className="mt-8 flex flex-col sm:flex-row gap-3 justify-center md:justify-end"
+                className="mt-8 flex flex-col sm:flex-row gap-3"
               >
+                <OrderDialog
+                  triggerClassName="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-ember text-primary-foreground font-medium hover:shadow-glow transition-shadow"
+                  triggerLabel="Place Order"
+                />
                 <Link
                   to="/phones"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-background/60 backdrop-blur border border-border text-foreground font-medium hover:bg-background/80 transition"
                 >
-                  View Catalog <ArrowRight className="w-4 h-4" />
+                  Shop Catalog <ArrowRight className="w-4 h-4" />
                 </Link>
-                <a
-                  href={waLink()}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-gradient-ember text-primary-foreground font-medium hover:shadow-glow transition-shadow"
-                >
-                  <Play className="w-4 h-4 fill-current" /> Order on WhatsApp
-                </a>
               </motion.div>
             </motion.div>
           </div>
