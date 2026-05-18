@@ -1,6 +1,7 @@
 import { Link, useLocation } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { MessageCircle } from "lucide-react";
+import { OrderDialog } from "@/components/OrderDialog";
 
 const WHATSAPP = "2349169661874";
 const waLink = (msg = "Hi Nazaa's Store, I'd like to place an order.") =>
@@ -39,15 +40,12 @@ export function Header() {
             </Link>
           ))}
         </nav>
-        <a
-          href={waLink()}
-          target="_blank"
-          rel="noreferrer"
-          className="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-ember text-primary-foreground text-sm font-medium hover:shadow-glow transition-shadow"
-        >
-          <MessageCircle className="w-4 h-4" />
-          Order Now
-        </a>
+        <div className="hidden sm:block">
+          <OrderDialog
+            triggerClassName="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-ember text-primary-foreground text-sm font-medium hover:shadow-glow transition-shadow"
+            triggerLabel="Place Order"
+          />
+        </div>
       </div>
     </motion.header>
   );

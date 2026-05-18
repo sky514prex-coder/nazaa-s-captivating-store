@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import { Phone, MapPin, Clock, MessageCircle, Mail } from "lucide-react";
 import { SiteLayout, waLink } from "@/components/SiteLayout";
+import { OrderDialog } from "@/components/OrderDialog";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -48,6 +49,12 @@ function ContactPage() {
           <h2 className="font-display text-3xl md:text-4xl mt-5">Order on WhatsApp</h2>
           <p className="mt-2 opacity-90">Tap to start a chat — we'll guide you through.</p>
           <p className="mt-6 font-display text-2xl">+234 916 966 1874</p>
+          <div className="mt-6" onClick={(e) => e.stopPropagation()}>
+            <OrderDialog
+              triggerClassName="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-background text-foreground text-sm font-medium hover:scale-105 transition-transform"
+              triggerLabel="Place Order with Form"
+            />
+          </div>
         </motion.a>
 
         <motion.div
