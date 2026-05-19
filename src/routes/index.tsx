@@ -13,7 +13,7 @@ import bag2 from "@/assets/bag-2.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Nazaa's Store — Premium iPhones, Devices in Ibadan" },
+      { title: "Nazaa's Store — Premium iPhones, Devices in Owerri" },
       { name: "description", content: "Premium iPhones, devices & designer bags from Nazaa's Store, Owerri Nigeria. View catalog or order on WhatsApp." },
       { property: "og:title", content: "Nazaa's Store — Premium iPhones & Designer Bags" },
       { property: "og:description", content: "Premium iPhones and designer bags delivered with care from Owerri, Nigeria." },
@@ -38,13 +38,13 @@ function HomePage() {
 
           <div className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 py-16">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 1, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.9, ease: "easeOut" }}
               className="max-w-2xl"
             >
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-background/50 backdrop-blur border border-border/60 text-xs text-accent mb-6"
@@ -61,7 +61,7 @@ function HomePage() {
                 Place your order in seconds. We'll confirm and dispatch on WhatsApp.
               </p>
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 1, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.6 }}
                 className="mt-8 flex flex-col sm:flex-row gap-3"
@@ -87,7 +87,7 @@ function HomePage() {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-12"
         >
@@ -104,7 +104,7 @@ function HomePage() {
               key={c.to}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
             >
               <Link
@@ -146,7 +146,7 @@ function HomePage() {
               key={p.name}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: true, amount: 0.1 }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
               whileHover={{ y: -8 }}
               className="group rounded-2xl overflow-hidden bg-card border border-border flex flex-col"
@@ -169,9 +169,9 @@ function HomePage() {
       {/* CTA */}
       <section className="max-w-7xl mx-auto px-6 mt-32">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.7 }}
           className="relative rounded-3xl p-10 md:p-16 overflow-hidden bg-gradient-ember text-primary-foreground"
         >
