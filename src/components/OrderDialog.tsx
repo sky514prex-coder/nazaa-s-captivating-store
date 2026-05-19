@@ -5,6 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { MessageCircle, ShoppingBag } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 const WHATSAPP = "2349169661874";
 
@@ -18,6 +19,7 @@ type Props = {
 
 export function OrderDialog({ product = "", price = "", trigger, triggerClassName, triggerLabel = "Place Order" }: Props) {
   const [open, setOpen] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -30,8 +32,28 @@ export function OrderDialog({ product = "", price = "", trigger, triggerClassNam
   const update = (k: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitting(true);
+
+    // Save order to Supabase
+    try {
+      await supabase.from("orders").insert({
+        customer_name: form.name,
+        customer_phone: form.phone,
+        delivery_address: form.address,
+        product_name: form.product,
+        price: price || undefined,
+        quantity: parseInt(form.quantity, 10),
+        notes: form.notes || undefined,
+        status: "pending",
+      });
+    } catch (err) {
+      console.error("Order save error:", err);
+      // Don't block WhatsApp redirect even if DB save fails
+    }
+
+    // Redirect to WhatsApp (existing behaviour preserved)
     const msg =
       `*New Order — Nazaa's Store*%0A` +
       `%0A👤 *Name:* ${encodeURIComponent(form.name)}` +
@@ -42,6 +64,7 @@ export function OrderDialog({ product = "", price = "", trigger, triggerClassNam
       `%0A🔢 *Quantity:* ${encodeURIComponent(form.quantity)}` +
       (form.notes ? `%0A📝 *Notes:* ${encodeURIComponent(form.notes)}` : "");
     window.open(`https://wa.me/${WHATSAPP}?text=${msg}`, "_blank");
+    setSubmitting(false);
     setOpen(false);
   };
 
@@ -96,9 +119,9 @@ export function OrderDialog({ product = "", price = "", trigger, triggerClassNam
             <Textarea id="notes" value={form.notes} onChange={update("notes")} rows={2} placeholder="Color, storage, anything extra…" />
           </div>
           <DialogFooter className="mt-2">
-            <Button type="submit" className="w-full bg-gradient-ember text-primary-foreground hover:opacity-90">
+            <Button type="submit" disabled={submitting} className="w-full bg-gradient-ember text-primary-foreground hover:opacity-90">
               <MessageCircle className="w-4 h-4 mr-2" />
-              Send Order via WhatsApp
+              {submitting ? "Saving…" : "Send Order via WhatsApp"}
             </Button>
           </DialogFooter>
         </form>
