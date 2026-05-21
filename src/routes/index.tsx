@@ -74,7 +74,7 @@ function HomePage() {
                   to="/phones"
                   className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full bg-background/60 backdrop-blur border border-border text-foreground font-medium hover:bg-background/80 transition"
                 >
-                  Shop Catalog <ArrowRight className="w-4 h-4" />
+                  Shop Now <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
             </motion.div>
